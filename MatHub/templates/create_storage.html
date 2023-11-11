@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="create_win">
+    <div>
+        <h1 id="title"> Создание нового склада </h1>
+    </div>
+    <div class="create_form">
+        <form id="form" action="{% url 'create_storage' %}" method="POST" >
+            {% csrf_token %}
+            <div id="input_block">
+            {% for i in form %}
+            <div class="input_block">
+                <p>
+                    <label>{{ i.label }}</label>
+                </p>
+                <p> {{ i }} </p>
+            </div>
+            {% endfor %}
+            </div>
+            <button id="submit_btn" type="submit">
+                Подтвердить
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

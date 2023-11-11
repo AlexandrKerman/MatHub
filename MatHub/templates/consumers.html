@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <div>
+        <h1 id="title"> Заказчики </h1>
+    </div>
+    <div id="table">
+        <table class="info">
+            <tbody>
+            <tr><th>id</th><th>ФИО</th><th>Номер телефона</th><th>Количество заказов</th></tr>
+        {% for i in consumers %}
+            <tr class="tr_active"><td>{{ i.id }}</td><td>{{ i.consumer_name }}</td><td>{{ i.consumer_phone }}</td><td> {{ i.total_count }} </td></tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="create_win">
+    <div>
+        <h1 id="title"> Оформление заказа </h1>
+    </div>
+    <div class="create_form">
+        <form action="{% url 'orders' %}" id="form" method="POST" >
+            {% csrf_token %}
+            <div id="input_block">
+                {% for i in form %}
+                <div class="input_block">
+                    <p>
+                        <label>{{ i.label }}</label>
+                    </p>
+                    <p>
+                        {{ i }}
+                    </p>
+                </div>
+                {% endfor %}
+                <table class="order_table">
+                    <tbody>
+                {% if material %}
+                    <tr class="order_tr"><th class="order_th" id="order_th">№</th><th class="order_th">Материалы</th><th class="order_th">Количество</th></tr>
+                {% endif %}
+                {% for i in material %}
+                    <tr class="order_tr">
+                        <td class="order_td" id="order_td">
+                            <l>
+                                {{ forloop.counter }}
+                            </l>
+                        </td>
+                        <td class="order_td">
+                            {{ i.material }}
+                        </td>
+                        <td class="order_td">
+                            {{ i.material_count }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <button name="create_order_request" id="submit_btn" type="submit">
+                Подтвердить
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

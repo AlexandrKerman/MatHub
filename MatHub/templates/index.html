@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="{% static 'assets/images/mathub.ico' %}"/>
+        <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+        <title>MatHub</title>
+    </head>
+
+    <body>
+        <header>
+            <img src="{% static 'assets/images/MatHub_logo.png' %} " alt="MatHUB" />
+            <a class="logout" href="{% url 'logout' %}">
+                Выйти
+                <img class="logout" src="{% static 'assets/images/logout.png' %}"/>
+            </a>
+        </header>
+        <div class="panel" style="color: #EFEFEF">
+            <ul class="list">
+                <li>
+                    <a href="{% url 'storages' %}" class="bpanel">
+                       Склады
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'orders' %}" class="bpanel">
+                        Заказы
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'consumers' %}" class="bpanel">
+                        Заказчики
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'materials' %}" class="bpanel">
+                        Материалы
+                    </a>
+                </li>
+            </ul>
+            <div id="bpanel_bott">
+                <div class="dropform">
+                    <a href="{% url 'create_order' %}" class="bpanel">
+                        Создать заказ
+                    </a>
+                    <div class="dropform_content">
+                        <form action="{% url 'create_order' %}" method="GET">
+                            {{ field_num.label }} {{ field_num }}
+                            </br>
+                            <button id="confirm_btn" type="submit">
+                                Ок
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <a href="{% url 'create_storage' %}" class="bpanel">
+                    Создать склад
+                </a>
+            </div>
+        </div>
+        {% block content %} {% endblock %}
+    </body>
+</html>

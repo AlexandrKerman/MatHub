@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="{% static 'assets/images/mathub.ico' %}"/>
+        <link rel="stylesheet" href="{% static 'assets/css/login_styles.css' %}">
+        <title>MatHub</title>
+    </head>
+
+    <body>
+        <div class="win">
+            <div class="container">
+                <div class="head">
+                    Авторизация
+                </div>
+                <form autocomplete="false" class="login_frame" action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="frame">
+                        <div class="label">
+                            {{ form.login_field.label }}
+                        </div>
+                        <div class="input">
+                            {{ form.login_field }}
+                            <div class="ask">
+                                Если вы забыли свой логин, обратитесь к администратору сайта
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="frame">
+                        <div class="label">
+                            {{ form.password_field.label }}
+                        </div>
+                        <div class="input">
+                            {{ form.password_field }}
+                            <div class="ask">
+                                Если вы забыли свой пароль, обратитесь к администратору сайта
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn_frame">
+                        <button class="btn" type="submit">
+                            Подтвердить
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
