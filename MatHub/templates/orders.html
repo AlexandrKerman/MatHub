@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'orders' %}" method="POST">
+        {% csrf_token %}
+        <div style="position: relative">
+            <div style="display: inline-block">
+                <h1 id="title"> Заказы </h1>
+            </div>
+            <div id="delete_btn">
+                <button name="delete_order_request" style="background:0; border: none" type="submit">
+                    <div>
+                        <img id="delete_img" src="{% static 'assets/images/trash.png' %} " alt="Delete_Button" />
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div id="table">
+            <table class="info">
+                <tbody>
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            ФИО Заказчика
+                        </th>
+                        <th>
+                            Номер заказчика
+                        </th>
+                        <th>
+                            Адрес склада
+                        </th>
+                        <th>
+                            Элементов в заказе
+                        </th>
+                    </tr>
+                        {% for i in orders %}
+                        <tr class="tr_active">
+                            <td>
+                                <a href="{% url 'order' i.id %}" class="table_url">
+                                    <input id="checkbox" type="checkbox" name='chk' value={{ i.id }}>
+                                    {{ i.id }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'order' i.id %}" class="table_url">{{ i.consumer__consumer_name }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'order' i.id %}" class="table_url">{{ i.consumer__consumer_phone }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'order' i.id %}" class="table_url">{{ i.storage__storage_address }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'order' i.id %}" class="table_url">{{ i.total_count }}</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+{% endblock %}

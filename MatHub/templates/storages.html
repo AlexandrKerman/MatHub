@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'storages' %}" method="POST">
+        {% csrf_token %}
+        <div style="position: relative">
+            <div style="display: inline-block">
+                <h1 id="title"> Склады </h1>
+            </div>
+            <div id="delete_btn">
+                <button style="background:0; border: none" type="submit">
+                    <div>
+                        <img id="delete_img" src="{% static 'assets/images/trash.png' %} " alt="Delete_Button" />
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div id="table">
+            <table class="info">
+                <tbody>
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            Адрес
+                        </th>
+                        <th>
+                            Номер телефона
+                    </tr>
+                    {% for i in storages%}
+                        <tr class="tr_active">
+                            <td>
+                                <a href="{% url 'storage' i.id %}" class="table_url">
+                                    <input id="checkbox" type="checkbox" name='chk' value={{ i.id }}>
+                                    {{ i.id }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'storage' i.id %}" class="table_url">
+                                    {{ i.storage_address }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'storage' i.id %}" class="table_url">
+                                    {{ i.storage_phone }}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+{% endblock %}
